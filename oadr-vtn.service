@@ -1,0 +1,30 @@
+# OpenADR VTN Server Service Unit
+
+[Unit]
+Description=The OpenADR VTN server.
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+Environment=TORQUEBOX_HOME=/home/oadrdev/torquebox/current
+Environment=JBOSS_HOME=/home/oadrdev/torquebox/current/jboss
+Environment=JRUBY_HOME=/home/oadrdev/torquebox/current/jruby
+Environment=RAILS_ENV=production
+Environment=JBOSS_PIDFILE=/var/run/oadr-vtn/torquebox.pid
+Environment=JBOSS_CONSOLE_LOG=/var/log/oadr-vtn/console.log
+User=oadrdev
+Group=oadrdev
+WorkingDirectory=/home/oadrdev/torquebox/current/jboss
+RuntimeDirectory=oadr-vtn
+ExecStart=/usr/bin/java -D[Standalone] -server -XX:+UseCompressedOops -Xms64m -Xmx512m \
+	-Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman \
+	-Djava.awt.headless=true -Dorg.jboss.boot.log.file=${JBOSS_HOME}/standalone/log/server.log \
+	-Dlogging.configuration=file:${JBOSS_HOME}/standalone/configuration/logging.properties \
+	-Djboss.bind.address=0.0.0.0 \
+	-jar ${JBOSS_HOME}/jboss-modules.jar \
+	-mp ${JBOSS_HOME}/modules -jaxpmodule javax.xml.jaxp-provider org.jboss.as.standalone \
+	-Djboss.home.dir=${JBOSS_HOME} \
+	-Djboss.server.base.dir=${JBOSS_HOME}/standalone \
+	-c standalone.xml

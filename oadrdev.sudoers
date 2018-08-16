@@ -1,0 +1,2 @@
+# Allow openadrdev to run psql as the postgres user without any password
+oadrdev ALL = (postgres) NOPASSWD: /usr/bin/psql
