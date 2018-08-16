@@ -1,5 +1,7 @@
 # OpenADR Virtual Top Node Vagrant VM
 
+![screen shot](docs/openadr-vtn-home.png)
+
 This project contains a Vagrant setup for a complete [OpenADR Virtual Top Node][vtn]
 development environment using a Linux virtual machine. Once you have Vagrant and
 VirtualBox installed, you can run:
