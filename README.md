@@ -1,5 +1,7 @@
 # OpenADR Virtual Top Node Vagrant VM
 
+> :warning: This project is no longer maintained.
+
 ![screen shot](docs/openadr-vtn-home.png)
 
 This project contains a Vagrant setup for a complete [OpenADR Virtual Top Node][vtn]
